@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MainAppLabRats" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorFourth</item>
+        <item name="colorPrimaryVariant">@color/colorThird</item>
+        <item name="colorOnPrimary">@color/colorSecondary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorFourth</item>
+        <item name="colorSecondaryVariant">@color/colorThird</item>
+        <item name="colorOnSecondary">@color/colorSecondary</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:text">@color/white</item>
+    </style>
+</resources>

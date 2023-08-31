@@ -1,0 +1,3 @@
+0 Sehat
+1 Fissur
+2 Kanker

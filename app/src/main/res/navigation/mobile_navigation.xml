@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.mainapplabrats.ui.HomeFragment"
+        tools:layout="@layout/fragment_home"
+        app:labelVisibilityMode="unlabeled"
+        />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.mainapplabrats.ui.DashboardFragment"
+        tools:layout="@layout/fragment_dashboard"
+        app:labelVisibilityMode="unlabeled"
+        />
+    <fragment
+        android:id="@+id/navigation_operation"
+        android:name="com.example.mainapplabrats.ui.OperationsFragment"
+        tools:layout="@layout/fragment_operations"
+        app:labelVisibilityMode="unlabeled"
+        />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.mainapplabrats.ui.NotificationsFragment"
+        tools:layout="@layout/fragment_notifications"
+        app:labelVisibilityMode="unlabeled"
+        />
+
+</navigation>

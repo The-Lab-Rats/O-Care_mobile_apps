@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">O-Care</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Deteksi Penyakit</string>
+    <string name="title_operations">Cara Kerja</string>
+    <string name="title_information">Informasi</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="classified_as">Classified as:</string>
+    <string name="confidences">Confidences:</string>
+    <string name="todo">TODO</string>
+    <string name="load_image">Buka Galeri</string>
+    <string name="take_image">Buka Camera</string>
+    <string name="result_here">Result Here</string>
+    <string name="output">Diagnosa : </string>
+    <string name="click_for_more_information">Klik untuk info lebih lanjut</string>
+    <string name="gejala">Gejala</string>
+    <string name="aksi">Aksi</string>
+    <string name="pesan">Pesan</string>
+    <string name="dengan_akurasi">Dengan Akurasi</string>
+    <string name="hasil_diagnosa">Hasil Diagnosa</string>
+    <string name="next_step">Tindakan Selanjutnya</string>
+    <string name="diagnosa">Diagnosa</string>
+    <string name="lorem_ipsum2">Lorem ipsum dolor sit amet consectetur. Dolor velit sit egestas proin dui mattis mattis. Molestie non consequat senectus ac felis sem ipsum. Hac viverra vitae mauris sit velit vestibulum egestas ut feugiat. Massa urna maecenas venenatis habitasse scelerisque dapibus.</string>
+    <string name="saran">Saran</string>
+
+    <string name="title_onboarding_1">Welcome to Onboarding App !</string>
+    <string name="description_onboarding_1">Here is an open-source project which shows sweet &amp; original onboarding ViewPagers that follows Material Design Guidelines</string>
+
+    <string name="title_onboarding_2">Try AirBnB Lottie</string>
+    <string name="description_onboarding_2">We use Lottie Animations on our Intro to make it interactive &amp; pleasant. Did you already tried it ? If no, let\'s start now. It\'s just awesome</string>
+
+    <string name="title_onboarding_3">Code beautiful apps</string>
+    <string name="description_onboarding_3">Our mission is to make useful &amp; subtle apps. We love help people to save time with open-source stuffs, but we also make life easier by creating new things. Good Coding!</string>
+
+    <string name="start_text_advice">By continuing on this application you agree to our Terms of Use and Privacy Policy</string>
+
+    <string name="start">start</string>
+    <string name="skip">Skip</string>
+    <string name="finish">finish</string>
+    <string name="next">next</string>
+    <string name="back">back</string>
+    <string name="food">FRESH FOOD</string>
+    <string name="delivery">FAST DELIVERY</string>
+    <string name="payment">EASY PAYMENT</string>
+</resources>

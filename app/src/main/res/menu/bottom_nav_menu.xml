@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:title="@string/title_home"
+        android:icon="@drawable/ic_action_name"
+        app:labelVisibilityMode="unlabeled"
+        />
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_detection"
+        android:title="@string/title_dashboard"
+        app:labelVisibilityMode="unlabeled"
+        />
+    <item
+        android:id="@+id/navigation_operation"
+        android:icon="@drawable/ic_operation_list"
+        android:title="@string/title_operations"
+        app:labelVisibilityMode="unlabeled"
+        />
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_information"
+        android:title="@string/title_information"
+        app:labelVisibilityMode="unlabeled"
+        />
+
+</menu>

@@ -40,3 +40,4 @@ Pastikan kalian sudah memberikan izin kepada aplikasi untuk mengakses kamera dan
 <img src="gif/full.gif" width="256"/> 
 <img src="gif/deteksi.gif" width="256"/>
 <img src="gif/berita.gif" width="256"/>
+<img src="gif/search.gif" width="256"/>

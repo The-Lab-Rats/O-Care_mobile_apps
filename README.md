@@ -9,7 +9,6 @@ Berikut tampilan untuk beberapa fitur yang ada di aplikasi :
 * Deteksi kesehatan mulut berdasarkan gambar gigi dan lidah
 * Artikel rekomendasi seputar hasil diagnosa
 
-
 # Tata cara menjalankan aplikasi
 
 * Klon Repositori berikut
@@ -20,16 +19,10 @@ Berikut tampilan untuk beberapa fitur yang ada di aplikasi :
 * cek API apakah sudah sesuai
 * Build dan jalankan di IDE yang sesuai (Android) / perangkat android
 
-<img src="gif/full.gif" width="256"/> 
-<img src="gif/deteksi.gif" width="256"/>
-<img src="gif/berita.gif" width="256"/>
-
-
 # Spesifikasi minimum untuk menjalankan aplikasi
 * Android version 
 * Ram minimum 
 * Storage minimum 
-
 
 # Cara menggunakan aplikasi
 
@@ -45,3 +38,7 @@ Pastikan kalian sudah memberikan izin kepada aplikasi untuk mengakses kamera dan
   - Arahkan kamera ke objek (gigi atau lidah) dengan baik dan secara jelas yang agar AI dapat mendeteksi dengan baik objek yang dideteksi.
   - Jika menggunakan gambar yang diambil dari galeri, pastikan gambar yang digunakan jelas terutama pada objek yang ingin dideteksi.
 - Setelah gambar dipilih, AI akan secara otomatis melakukan klasifikasi dan akan memberikan hasil diagnosa, penyebab umum mengenai hasil diagnosa, dan rekomendasi mengenai hasil diagnosa.
+
+<img src="gif/full.gif" width="256"/> 
+<img src="gif/deteksi.gif" width="256"/>
+<img src="gif/berita.gif" width="256"/>

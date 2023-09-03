@@ -9,10 +9,10 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
-import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +20,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -32,6 +33,7 @@ import com.example.mainapplabrats.R.*
 import com.example.mainapplabrats.adapter.JsonAdapter
 import com.example.mainapplabrats.data.DataLocal
 import com.example.mainapplabrats.databinding.FragmentDashboardBinding
+import com.example.mainapplabrats.ml.Model
 import com.example.mainapplabrats.ml.ModelF
 import com.example.mainapplabrats.model.Cell
 import com.example.mainapplabrats.networking.ApiEndpoint.getApiJson
@@ -47,7 +49,6 @@ import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import org.tensorflow.lite.support.image.TensorImage
 import java.io.BufferedReader
-import java.io.ByteArrayOutputStream
 import java.io.InputStreamReader
 import java.lang.reflect.Type
 import kotlin.collections.ArrayList
@@ -57,12 +58,14 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private lateinit var imageView: ImageView
     private lateinit var button: Button
+    private lateinit var btn_more_info: Button
     private lateinit var buttonLoad: Button
     private lateinit var detailDesc : RecyclerView
     private val TAG : String = "CHECK_RESPONE"
     private val GALLERY_REQUEST_CODE = 123
     var itemsArray : ArrayList<Cell> = ArrayList()
     lateinit var adapter: JsonAdapter
+    private lateinit var btn_indikasi: TextView
     private val binding get() = _binding!!
     var TandaMasuk : Int = 0
 
@@ -77,6 +80,8 @@ class DashboardFragment : Fragment() {
         button = binding.btnTakeImage
         detailDesc = binding.detailDesc
         buttonLoad = binding.btnLoadImage
+        btn_more_info = binding.btnMoreInfo
+        btn_indikasi = binding.btnIndikasi
 
         button.setOnClickListener{
             if (ContextCompat.checkSelfPermission(requireActivity(), android.Manifest.permission.CAMERA)
@@ -99,6 +104,14 @@ class DashboardFragment : Fragment() {
                 requestPermission.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
             }
         }
+        btn_indikasi.visibility = View.GONE
+        btn_more_info.setText("Klik Untuk Informasi Lebih Lanjut ")
+        btn_more_info.setOnClickListener {
+            val searchUrl = "https://www.google.com/search?q=cara+mengatasi+${btn_indikasi.text}"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(searchUrl))
+            startActivity(intent)
+        }
+
 
         val isAppInstalled = DataLocal.isAppInstalledBefore(requireActivity())
         if (!isAppInstalled) {
@@ -202,7 +215,7 @@ class DashboardFragment : Fragment() {
 
         //sesuaikan ukuran bitmap yang diminta
         val resized = Bitmap.createScaledBitmap(bitmap, 150, 150, true)
-        val model = ModelF.newInstance(requireActivity())
+        val model = Model.newInstance(requireActivity())
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1,150, 150, 3),DataType.FLOAT32)
 
         val tensorImage = TensorImage(DataType.FLOAT32)
@@ -212,15 +225,14 @@ class DashboardFragment : Fragment() {
 
         val outputs =  model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer.floatArray
-//        var maxIdx = getMax(outputFeature0.floatArray,3)
 
         var maxIdx = 0
-        Log.i(TAG, "RESPON INDEX DETEKSI SEBELUM : ${maxIdx}")
         outputFeature0.forEachIndexed { index, fl ->
             if (outputFeature0[maxIdx] < fl){
                 maxIdx =  index
             }
         }
+        btn_indikasi.setText(lines[maxIdx])
 
         model.close()
         val service = getApiJson().create(ApiInterface::class.java)
@@ -268,9 +280,9 @@ class DashboardFragment : Fragment() {
         val editor = sharedPref.edit()
         val json = gson.toJson(itemsArray)
         editor.putString("ArrayDeteksi", json)
-        editor.putString("TandaMasuk",TandaMasuk.toString())
+        editor.putString("hasilDeteksi", btn_indikasi.text.toString())
+        editor.putString("TandaMasuk", TandaMasuk.toString())
         editor.apply()
-        Log.d(TAG,"ISI SAVE ${json}")
     }
 
      fun loadDataDetection() {
@@ -282,6 +294,9 @@ class DashboardFragment : Fragment() {
         adapter = JsonAdapter(itemsArray)
         adapter.notifyDataSetChanged()
         binding.detailDesc.adapter = adapter
+         val hasilD = sharedPref.getString("hasilDeteksi",null)
+         binding.btnIndikasi.text = hasilD
+
     }
    fun saveLocalInstalled(DataVar : Int){
         val sharedPref = requireActivity().getSharedPreferences("DATA", Context.MODE_PRIVATE)

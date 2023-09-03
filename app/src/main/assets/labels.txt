@@ -1,3 +1,12 @@
-0 Sehat
-1 Fissur
-2 Kanker
+Calculus
+Caries
+Discoloration
+Gingivitis
+Hypodontia
+Healty Teeth
+Fissure Tongue
+Geographic Tongue
+Cancer Tongue
+Leukoplakia Tongue
+Coated Tongue
+Healty Tongue

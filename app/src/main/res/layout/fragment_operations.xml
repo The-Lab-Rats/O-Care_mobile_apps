@@ -146,7 +146,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="Pastikan gambar yang diambil sudut pandang spesifik, pencahayaan bagus, resolusi tajam
-                         sesuai objek yang ingin dideteksi baik lidah maupun gigi, ini agar AI bisa mendeteksi objek dengan lebih jelas."
+                         sesuai objek yang ingin dideteksi baik lidah maupun gigi, ini agar AI bisa mendeteksi objek dengan lebih jelas. Kalau perlu crop bagian yang ingin di scan sebelum dideteksi."
                    />
 
                 </LinearLayout>

@@ -94,6 +94,32 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/title_diagnosa" />
 
+                <LinearLayout
+                    app:layout_constraintTop_toBottomOf="@id/detailDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btn_more_info"
+                        android:layout_marginStart="35dp"
+                        android:textSize="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/detailDesc"
+                        android:layout_marginTop="10dp"
+                        />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="10dp"
+                        android:layout_marginStart="35dp"
+                        android:id="@+id/btn_indikasi"/>
+                </LinearLayout>
+
+
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline2"
                     android:layout_width="wrap_content"

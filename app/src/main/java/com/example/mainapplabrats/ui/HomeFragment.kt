@@ -12,15 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
-import com.example.mainapplabrats.MainActivity
-import com.example.mainapplabrats.R
 import com.example.mainapplabrats.adapter.NewsAdapter
 import com.example.mainapplabrats.databinding.FragmentHomeBinding
 import com.example.mainapplabrats.model.ModelArticle
@@ -41,7 +37,6 @@ class HomeFragment : Fragment() {
         const val API_KEY = "0ede1bdd12b74f87917d2a037eb88bb7"
     }
     private lateinit var imageRefresh: ImageView
-//    private lateinit var rvListNews: RecyclerView
     private lateinit var rvListNews: ShimmerRecyclerView
 
     private lateinit var tvTitle: TextView

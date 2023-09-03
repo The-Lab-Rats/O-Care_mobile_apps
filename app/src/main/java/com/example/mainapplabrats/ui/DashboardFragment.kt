@@ -1,17 +1,23 @@
 package com.example.mainapplabrats.ui
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -22,11 +28,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mainapplabrats.R
+import com.example.mainapplabrats.R.*
 import com.example.mainapplabrats.adapter.JsonAdapter
-//import com.example.mainapplabrats.adapter.JsonAdapter
+import com.example.mainapplabrats.data.DataLocal
 import com.example.mainapplabrats.databinding.FragmentDashboardBinding
-import com.example.mainapplabrats.ml.Model
 import com.example.mainapplabrats.ml.ModelF
 import com.example.mainapplabrats.model.Cell
 import com.example.mainapplabrats.networking.ApiEndpoint.getApiJson
@@ -39,11 +44,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.image.ops.ResizeOp
 import java.io.BufferedReader
+import java.io.ByteArrayOutputStream
 import java.io.InputStreamReader
 import java.lang.reflect.Type
 import kotlin.collections.ArrayList
@@ -61,7 +65,6 @@ class DashboardFragment : Fragment() {
     lateinit var adapter: JsonAdapter
     private val binding get() = _binding!!
     var TandaMasuk : Int = 0
-    private val IS_APP_INSTALLED_KEY = "is_app_installed"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -96,50 +99,43 @@ class DashboardFragment : Fragment() {
                 requestPermission.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
             }
         }
-        //fungsi untuk click to search
-//        tvOutput.setOnClickListener {
-//            val intent =  Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/search?q=${tvOutput.text}"))
-//            startActivity(intent)
-//        }
 
-        val isAppInstalled = isAppInstalledBefore()
+        val isAppInstalled = DataLocal.isAppInstalledBefore(requireActivity())
         if (!isAppInstalled) {
-            markAppAsInstalled()
+            DataLocal.markAppAsInstalled(requireActivity())
             resetLocalInstalled()
             setToolbar()
             setupRecyclerView()
-            Log.d(TAG,"MASUK SCOPE BELUM TERINSTALL")
             TandaMasuk+=1
         }
 
         if(isAppInstalled){
-            Log.d(TAG,"TOTAL TANDA MASUK ${loadLocalInstalled()}")
             if(loadLocalInstalled() >= 2){
                 if (itemsArray.isEmpty()) {
                     loadDataDetection()
+                    imageView.setImageBitmap(DataLocal.loadImageFromSharedPreferences(requireActivity()))
                     setToolbar()
                     setupRecyclerView()
-                    Log.d(TAG,"MASUK SCOPE TANDA MASUK")
                 }
             }else{
                 setToolbar()
                 setupRecyclerView()
-                Log.d(TAG,"MASUK SCOPE TANDA TIDAK MASUK")
             }
         }
         return root
     }
 
-    private fun isAppInstalledBefore(): Boolean {
-        val sharedPref = requireActivity().getSharedPreferences("DATA", Context.MODE_PRIVATE)
-        return sharedPref.getBoolean(IS_APP_INSTALLED_KEY, false)
-    }
-
-    private fun markAppAsInstalled() {
-        val sharedPref = requireActivity().getSharedPreferences("DATA", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putBoolean(IS_APP_INSTALLED_KEY, true)
-        editor.apply()
+    private fun openCustomDialog() {
+        val dialog = Dialog(requireActivity())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(layout.loading_dialog)
+        dialog.show()
+        val dialogDisplayDuration = 3000L
+        val handler = Handler()
+        handler.postDelayed({
+            dialog.dismiss()
+        }, dialogDisplayDuration)
     }
 
     private fun setToolbar() {
@@ -155,15 +151,17 @@ class DashboardFragment : Fragment() {
     }
     private val takePicturePreview = registerForActivityResult(ActivityResultContracts.TakePicturePreview()){ bitmap->
         if(bitmap != null){
+            DataLocal.bitmapToBase64(bitmap)
+            DataLocal.saveImageToSharedPreferences(bitmap,requireActivity())
             imageView.setImageBitmap(bitmap)
             outputGenerator(bitmap)
+            openCustomDialog()
         }
     }
     private val onresult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
         Log.i("TAG", "This is result : ${result.data} ${result.resultCode}")
         onResultReceived(GALLERY_REQUEST_CODE, result)
     }
-
 
     private fun onResultReceived(requestCode : Int, result: ActivityResult?){
         when(requestCode){
@@ -174,6 +172,9 @@ class DashboardFragment : Fragment() {
                         val bitmap = BitmapFactory.decodeStream(requireContext().contentResolver.openInputStream(uri))
                         imageView.setImageBitmap(bitmap)
                         outputGenerator(bitmap)
+                        openCustomDialog()
+                        DataLocal.bitmapToBase64(bitmap)
+                        DataLocal.saveImageToSharedPreferences(bitmap,requireActivity())
                     }
                 }else{
                     Log.e("TAG", "onActivityResult : Error in selecting image")
@@ -188,27 +189,23 @@ class DashboardFragment : Fragment() {
         binding.detailDesc.setHasFixedSize(true)
         val dividerItemDecoration =
             DividerItemDecoration(binding.detailDesc.context, layoutManager.orientation)
-        ContextCompat.getDrawable(requireActivity(), R.drawable.line_divider)?.let { drawable ->
+        ContextCompat.getDrawable(requireActivity(), drawable.line_divider)?.let { drawable ->
             dividerItemDecoration.setDrawable(drawable)
         }
         binding.detailDesc.addItemDecoration(dividerItemDecoration)
     }
     private fun outputGenerator(bitmap : Bitmap){
-        var imageProcessor = ImageProcessor.Builder()
-            .add(ResizeOp(150,150, ResizeOp.ResizeMethod.BILINEAR))
-            .build()
-
         //txt notepad
         val inputStream = requireContext().assets.open("labels.txt")
         val bufferedReader = BufferedReader(InputStreamReader(inputStream))
         val lines = bufferedReader.readLines()
 
         //sesuaikan ukuran bitmap yang diminta
-        val resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-        val model = Model.newInstance(requireActivity())
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1,224, 224, 3),DataType.UINT8)
+        val resized = Bitmap.createScaledBitmap(bitmap, 150, 150, true)
+        val model = ModelF.newInstance(requireActivity())
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1,150, 150, 3),DataType.FLOAT32)
 
-        val tensorImage = TensorImage(DataType.UINT8)
+        val tensorImage = TensorImage(DataType.FLOAT32)
         tensorImage.load(resized)
         val ByteBuffer = tensorImage.buffer
         inputFeature0.loadBuffer(ByteBuffer)
@@ -218,23 +215,17 @@ class DashboardFragment : Fragment() {
 //        var maxIdx = getMax(outputFeature0.floatArray,3)
 
         var maxIdx = 0
-        Log.i(TAG, "RESPON INDEX DETEKSI : ${maxIdx}")
+        Log.i(TAG, "RESPON INDEX DETEKSI SEBELUM : ${maxIdx}")
         outputFeature0.forEachIndexed { index, fl ->
             if (outputFeature0[maxIdx] < fl){
                 maxIdx =  index
-                Log.i(TAG, "RESPON INDEX DETEKSI : ${maxIdx}")
             }
         }
 
         model.close()
-//        tvOutput.setText(lines[maxIdx])
-        Log.i(TAG, "RESPON INDEX DETECTION FULLY : ${maxIdx}")
-        // Create Service
         val service = getApiJson().create(ApiInterface::class.java)
         CoroutineScope(Dispatchers.IO).launch {
-            // Do the GET request and get response
             val response = service.getEmployees()
-            // Getter for the property
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val items = response.body()
@@ -248,20 +239,22 @@ class DashboardFragment : Fragment() {
                             val model = Cell(Id , Nama,  Penyebab, Rekomendasi)
                             itemsArray.add(model)
                             itemsArray.reverse()
-                            Log.d(TAG, "RESPON API SELECTEDITEM (ISI) B ${itemsArray}")
                             adapter = JsonAdapter(itemsArray)
                             adapter.notifyDataSetChanged()
                             TandaMasuk+=1
-                            val isAppInstalled = isAppInstalledBefore()
+                            val isAppInstalled = DataLocal.isAppInstalledBefore(requireActivity())
                             if(isAppInstalled){
                                 TandaMasuk+=1
                             }
                             saveLocalInstalled(TandaMasuk)
                             saveDataDetection()
-                            Log.i(TAG,"ISI TANDA MASUK : ${TandaMasuk}")
                         }
                     }
-                    binding.detailDesc.adapter = adapter
+                    val delayMillis = 3000L
+                    val handler = Handler()
+                    handler.postDelayed({
+                        binding.detailDesc.adapter = adapter
+                    }, delayMillis)
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
                 }
@@ -269,19 +262,6 @@ class DashboardFragment : Fragment() {
         }
 
     }
-//    private fun getMax(arr: FloatArray, j: Int): Int{
-//        var ind = 0
-//        var min = 0.0F
-//
-//        for (i in 0..j)
-//        {
-//            if(arr[i] > min){
-//                ind = i
-//                min = arr[i]
-//            }
-//        }
-//        return ind
-//    }
     private fun saveDataDetection() {
         val gson = Gson()
         val sharedPref = requireActivity().getSharedPreferences("DATA", Context.MODE_PRIVATE)
@@ -299,7 +279,6 @@ class DashboardFragment : Fragment() {
         val json = sharedPref.getString("ArrayDeteksi", null)
         val type: Type = object : TypeToken<ArrayList<Cell>>() {}.type
         itemsArray = gson.fromJson(json, type) ?: ArrayList()
-        Log.d(TAG,"ISI LOAD ${itemsArray}")
         adapter = JsonAdapter(itemsArray)
         adapter.notifyDataSetChanged()
         binding.detailDesc.adapter = adapter

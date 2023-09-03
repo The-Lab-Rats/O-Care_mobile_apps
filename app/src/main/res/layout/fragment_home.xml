@@ -35,39 +35,23 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:orientation="horizontal">
 
-                <LinearLayout
+                <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Ayo periksa kesehatan mulutmu, kami akan membantu dengan AI untuk cek kesehatan mulut kamu :)"
-                        android:textSize="16sp"
-                        android:textStyle="normal" />
-                    <Button
-                        android:id="@+id/btnPeriksa"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_rectangle"
-                        android:focusable="true"
-                        android:text="Periksa Sekarang" />
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ajakan"
+                    android:scaleType="center"
+                    />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginEnd="16dp"
                 android:orientation="horizontal">
@@ -89,18 +73,18 @@
                     android:src="@drawable/ic_refresh" />
 
             </LinearLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <androidx.recyclerview.widget.RecyclerView
+                <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                     android:id="@+id/rvListNews"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
+                    android:layout_height="wrap_content"
+                    app:shimmer_demo_layout_manager_type="grid"
+                    app:shimmer_demo_grid_child_count="2"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:shimmer_demo_shimmer_color="@color/colorShimmer" />
+            </RelativeLayout>
 
         </LinearLayout>
     </RelativeLayout>

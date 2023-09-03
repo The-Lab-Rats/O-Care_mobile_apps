@@ -46,6 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Langkah 1"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -128,9 +129,9 @@
 
                     <ImageView
                         android:layout_width="320dp"
-                        android:layout_height="135dp"
+                        android:layout_height="150dp"
                         android:contentDescription="Step 3 Icon"
-                        android:src="@drawable/star" />
+                        android:src="@drawable/contohfotobenar" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -144,7 +145,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Pastikan gambar yang diambil spesifik sesuai objek yang ingin dideteksi baik lidah maupun gigi, ini agar AI bisa mendeteksi objek dengan lebih jelas."
+                        android:text="Pastikan gambar yang diambil sudut pandang spesifik, pencahayaan bagus, resolusi tajam
+                         sesuai objek yang ingin dideteksi baik lidah maupun gigi, ini agar AI bisa mendeteksi objek dengan lebih jelas."
                    />
 
                 </LinearLayout>
@@ -166,14 +168,13 @@
 
                     <ImageView
                         android:layout_width="324dp"
-                        android:layout_height="157dp"
+                        android:layout_height="120dp"
                         android:contentDescription="Step 4 Icon"
-                        android:src="@drawable/star" />
+                        android:src="@drawable/hasildiagnosa" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:text="Langkah 4"
                         android:textSize="18sp"
                         android:textStyle="bold" />

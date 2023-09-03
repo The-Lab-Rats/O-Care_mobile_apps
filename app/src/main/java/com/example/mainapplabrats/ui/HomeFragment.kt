@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -26,6 +27,7 @@ import com.example.mainapplabrats.model.ModelArticle
 import com.example.mainapplabrats.model.ModelNews
 import com.example.mainapplabrats.networking.ApiEndpoint
 import com.example.mainapplabrats.networking.ApiInterface
+import com.example.mainapplabrats.util.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,7 +41,9 @@ class HomeFragment : Fragment() {
         const val API_KEY = "0ede1bdd12b74f87917d2a037eb88bb7"
     }
     private lateinit var imageRefresh: ImageView
-    private lateinit var rvListNews: RecyclerView
+//    private lateinit var rvListNews: RecyclerView
+    private lateinit var rvListNews: ShimmerRecyclerView
+
     private lateinit var tvTitle: TextView
     private lateinit var tvToolbarTitle : Toolbar
     private lateinit var ImageSlider : ImageSlider
@@ -65,11 +69,6 @@ class HomeFragment : Fragment() {
         rvListNews = binding.rvListNews
         tvTitle = binding.tvTitle
         imageRefresh = binding.imageRefresh
-        btnPeriksa = binding.btnPeriksa
-
-        btnPeriksa.setOnClickListener {
-            findNavController().navigate(R.id.navigation_dashboard)
-        }
 
         //image slider
         val imageList =  ArrayList<SlideModel>()
@@ -81,17 +80,16 @@ class HomeFragment : Fragment() {
         tvTitle.setText("Berita Kesehatan")
         rvListNews.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvListNews.setHasFixedSize(true)
-        rvListNews.adapter
+        rvListNews.showShimmerAdapter()
 
         imageRefresh.setOnClickListener {
-            rvListNews.adapter
+            rvListNews.showShimmerAdapter()
             getListNews()
         }
 
         //get news
         setToolbar()
         getListNews()
-
 
         return root
     }
@@ -101,8 +99,7 @@ class HomeFragment : Fragment() {
 
 
     private fun getListNews() {
-//        strCountry = Utils.getCountry()
-        strCountry = "us".toString()
+        strCountry = Utils.getCountry()
 
         //set api
         val apiInterface = ApiEndpoint.getApiClient().create(ApiInterface::class.java)
@@ -115,7 +112,7 @@ class HomeFragment : Fragment() {
                     rvListNews.adapter = newsAdapter
                     Log.i(TAG,"Responnya Article : ${modelArticle}")
                     newsAdapter?.notifyDataSetChanged()
-//                    rvListNews.visibility = View.GONE
+                    rvListNews.hideShimmerAdapter()
                 }
             }
 

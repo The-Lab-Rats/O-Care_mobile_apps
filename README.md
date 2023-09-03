@@ -13,8 +13,8 @@ Berikut tampilan untuk beberapa fitur yang ada di aplikasi :
 # Tata cara menjalankan aplikasi
 
 * Klon Repositori berikut
-  ``
-  git clone https://github.com/The-Lab-Rats/O-Care_mobile_apps
+  
+  - git clone https://github.com/The-Lab-Rats/O-Care_mobile_apps
 
 * Sesuaikan paket, gradle, nama file atau folder agar sesuai dengan yang ada di repositori
 * cek API apakah sudah sesuai

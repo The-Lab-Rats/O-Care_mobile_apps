@@ -20,6 +20,10 @@ Berikut tampilan untuk beberapa fitur yang ada di aplikasi :
 * cek API apakah sudah sesuai
 * Build dan jalankan di IDE yang sesuai (Android) / perangkat android
 
+<img src="gif/full.gif" width="256"/> 
+<img src="gif/deteksi.gif" width="256"/>
+<img src="gif/berita.gif" width="256"/>
+
 
 # Spesifikasi minimum untuk menjalankan aplikasi
 * Android version 

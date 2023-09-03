@@ -4,7 +4,6 @@ Aplikasi ini menggunakan beberapa API untuk beberapa fitur seperti tips, news (b
 
 Berikut tampilan untuk beberapa fitur yang ada di aplikasi :
 
-* Tips Kesehatan
 * Berita Kesehatan
 * Deteksi kesehatan mulut berdasarkan gambar gigi dan lidah
 * Artikel rekomendasi seputar hasil diagnosa
@@ -20,15 +19,14 @@ Berikut tampilan untuk beberapa fitur yang ada di aplikasi :
 * Build dan jalankan di IDE yang sesuai (Android) / perangkat android
 
 # Spesifikasi minimum untuk menjalankan aplikasi
-* Android version 
-* Ram minimum 
-* Storage minimum 
+* Android version 8.0 - 8.1 Oreo 
+* Ram minimum 2gb
+* Storage minimum 4gb
 
 # Cara menggunakan aplikasi
 
 Pastikan kalian sudah memberikan izin kepada aplikasi untuk mengakses kamera dan penyimpanan pada perangkat yang digunakan.
 
-- Tips
 - Berita
 - Artikel rekomendasi
 

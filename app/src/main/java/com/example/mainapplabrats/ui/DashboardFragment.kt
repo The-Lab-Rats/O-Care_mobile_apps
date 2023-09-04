@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -34,10 +35,8 @@ import com.example.mainapplabrats.adapter.JsonAdapter
 import com.example.mainapplabrats.data.DataLocal
 import com.example.mainapplabrats.databinding.FragmentDashboardBinding
 import com.example.mainapplabrats.ml.Model
-import com.example.mainapplabrats.ml.ModelF
 import com.example.mainapplabrats.model.Cell
 import com.example.mainapplabrats.networking.ApiEndpoint.getApiJson
-//import com.example.mainapplabrats.model.ModelJson
 import com.example.mainapplabrats.networking.ApiInterface
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -144,11 +143,12 @@ class DashboardFragment : Fragment() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(layout.loading_dialog)
         dialog.show()
-        val dialogDisplayDuration = 3000L
-        val handler = Handler()
-        handler.postDelayed({
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            // Kode Anda di sini
             dialog.dismiss()
-        }, dialogDisplayDuration)
+        }, 3000)
+
     }
 
     private fun setToolbar() {
@@ -248,8 +248,7 @@ class DashboardFragment : Fragment() {
                             val Nama = selectedItem.nama
                             val Penyebab = selectedItem.penyebab
                             val Rekomendasi = selectedItem.rekomendasi
-                            val model = Cell(Id , Nama,  Penyebab, Rekomendasi)
-                            itemsArray.add(model)
+                            itemsArray.add( Cell(Id , Nama,  Penyebab, Rekomendasi))
                             itemsArray.reverse()
                             adapter = JsonAdapter(itemsArray)
                             adapter.notifyDataSetChanged()
@@ -262,11 +261,11 @@ class DashboardFragment : Fragment() {
                             saveDataDetection()
                         }
                     }
-                    val delayMillis = 3000L
-                    val handler = Handler()
-                    handler.postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        // Kode Anda di sini
                         binding.detailDesc.adapter = adapter
-                    }, delayMillis)
+                    }, 3000)
+
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
                 }

@@ -23,19 +23,18 @@
     <color name="textPrimaryGrid">#717171</color>
     <color name="textSecondaryGrid">@color/colorAccentGrid</color>
     <color name="textTertiaryGrid">#737373</color>
-
+    <color name="bg_meta_container">#000000</color>
+    <color name="profile_default_tint">#e0e0e0</color>
     <color name="textPrimary">#212121</color>
     <color name="textSecondary">#8b8b8b</color>
-
+    <color name="MainBackground">#ececec</color>
     <color name="demo_dark_transparent">#24000000</color>
+    <color name="colorPrimaryDark">#3E97F0</color>
+    <color name="colorAccent">#f0973e</color>
 
-        <color name="colorPrimaryDark">#3E97F0</color>
-        <color name="colorAccent">#f0973e</color>
-
-        <color name="light_grey">#ABABAB</color>
-        <color name="dark_grey">#333333</color>
-        <color name="dark_blue">#405467</color>
-
+    <color name="light_grey">#ABABAB</color>
+    <color name="dark_grey">#333333</color>
+    <color name="dark_blue">#405467</color>
 
     </resources>
 

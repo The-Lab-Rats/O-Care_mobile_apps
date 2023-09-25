@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.mainapplabrats.ui.NotificationsFragment"
-        tools:layout="@layout/fragment_notifications"
+        tools:layout="@layout/fragment_about"
         app:labelVisibilityMode="unlabeled"
         />
 

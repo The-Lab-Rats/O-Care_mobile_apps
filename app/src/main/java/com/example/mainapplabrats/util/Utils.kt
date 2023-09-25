@@ -14,7 +14,7 @@ object Utils {
         var isTime: String? = null
         try {
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-            val date = simpleDateFormat.parse(dateTime)
+            val date = simpleDateFormat.parse(dateTime.toString())
             isTime = prettyTime.format(date)
         } catch (e: ParseException) {
             e.printStackTrace()
@@ -26,8 +26,8 @@ object Utils {
         val isDate: String?
         val dateFormat = SimpleDateFormat("MMMM dd, yyyy - HH:mm:ss", Locale(getCountry()))
         isDate = try {
-            val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(dateNews)
-            dateFormat.format(date)
+            val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(dateNews.toString())
+            dateFormat.format(date as Date)
         } catch (e: ParseException) {
             e.printStackTrace()
             dateNews
@@ -38,6 +38,6 @@ object Utils {
     fun getCountry(): String {
         val locale = Locale.getDefault()
         val strCountry = locale.country
-        return strCountry.toLowerCase()
+        return strCountry.lowercase(Locale.getDefault())
     }
 }

@@ -3,6 +3,7 @@ package com.example.mainapplabrats.ui
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,12 +22,12 @@ class SplashFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Handler().postDelayed({
-            if(onBoardingFinished()){
-                Log.d(TAG, "MASUK SCOP SPLASH IF")
+        val handler = Handler(Looper.getMainLooper())
+
+        handler.postDelayed({
+            if (onBoardingFinished()) {
                 findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-            }else{
-                Log.d(TAG, "MASUK SCOP SPLASH ELSE")
+            } else {
                 findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
             }
         }, 2000)

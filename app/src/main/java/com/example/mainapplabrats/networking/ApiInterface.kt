@@ -17,7 +17,7 @@ interface ApiInterface {
             @Query("apiKey") apiKey: String?
     ): Call<ModelNews>
 
-    @GET("DiagonseAPI/db.json")
+    @GET("DiagnosisAPI/db.json")
     suspend fun getEmployees(): Response<List<ModelDiagnosa>>
 
 }

@@ -36,6 +36,56 @@
             tools:text="Isi Diagnosa" />
 
         <TextView
+            android:id="@+id/tv_title_penjelasan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Penjelasan"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_diagnose" />
+        <TextView
+            android:id="@+id/tv_desc_penjelasan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:text="Isi Penjelasan"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:scrollbarSize="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_penjelasan"
+            />
+        <TextView
+            android:id="@+id/tv_title_tanda"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Tanda-tanda"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_penjelasan" />
+        <TextView
+            android:id="@+id/tv_desc_tanda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:text="Isi Tanda-tanda"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:scrollbarSize="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_tanda"
+            />
+        <TextView
             android:id="@+id/tv_title_penyebab"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -46,7 +96,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_desc_diagnose" />
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_tanda" />
 
         <TextView
             android:id="@+id/tv_desc_penyebab"
@@ -62,12 +112,12 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title_penyebab"
            />
         <TextView
-            android:id="@+id/tv_title_rekomendasi"
+            android:id="@+id/tv_title_pencegahan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:text="@string/next_step"
+            android:text="Pencegahan"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,11 +125,37 @@
             app:layout_constraintTop_toBottomOf="@id/tv_desc_penyebab" />
 
         <TextView
+            android:id="@+id/tv_desc_pencegahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:text="Isi Pencegahan"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:scrollbarSize="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_pencegahan"
+            />
+        <TextView
+            android:id="@+id/tv_title_rekomendasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Rekomendasi Penanganan"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_pencegahan" />
+
+        <TextView
             android:id="@+id/tv_desc_rekomendasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:text="Isi Tindakan"
+            android:text="Isi Rekomendasi"
             android:clipToPadding="false"
             android:overScrollMode="never"
             android:scrollbarSize="2dp"

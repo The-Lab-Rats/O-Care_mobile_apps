@@ -26,8 +26,8 @@
         />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.mainapplabrats.ui.NotificationsFragment"
+        android:id="@+id/navigation_about"
+        android:name="com.example.mainapplabrats.ui.AboutFragment"
         tools:layout="@layout/fragment_about"
         app:labelVisibilityMode="unlabeled"
         />
@@ -41,6 +41,12 @@
         android:id="@+id/navigation_history"
         android:name="com.example.mainapplabrats.ui.HistoryCekFragment"
         tools:layout="@layout/fragment_history"
+        app:labelVisibilityMode="unlabeled"
+        />
+    <fragment
+        android:id="@+id/navigation_information"
+        android:name="com.example.mainapplabrats.ui.InformationFragment"
+        tools:layout="@layout/fragment_information"
         app:labelVisibilityMode="unlabeled"
         />
 

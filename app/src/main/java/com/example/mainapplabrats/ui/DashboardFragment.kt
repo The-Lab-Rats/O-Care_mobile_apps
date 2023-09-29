@@ -71,7 +71,6 @@ class DashboardFragment : Fragment() {
     private val PREF_NAME = "MyPrefs"
     private val KEY_ARRAY_LIST = "arrayListKey"
     lateinit var adapter: JsonAdapter
-    lateinit var historyAdapter: HistoryAdapter
     private lateinit var btnIndikasi: TextView
     private val binding get() = _binding!!
     var TandaMasuk : Int = 0
@@ -89,13 +88,12 @@ class DashboardFragment : Fragment() {
         buttonLoad = binding.btnLoadImage
         btn_more_info = binding.btnMoreInfo
         btnIndikasi = binding.btnIndikasi
-//        loadProfileDefault()
+
+
         buttonLoad.setOnClickListener {
             onProfileImageClick()
 
         }
-
-
         btnIndikasi.visibility = View.GONE
         btn_more_info.text = "Klik Untuk Informasi Lebih Lanjut "
         btn_more_info.setOnClickListener {
@@ -302,7 +300,6 @@ class DashboardFragment : Fragment() {
 
     }
     private fun outputGenerator(bitmap : Bitmap){
-        //txt notepad
         val inputStream = requireContext().assets.open("labels.txt")
         val bufferedReader = BufferedReader(InputStreamReader(inputStream))
         val lines = bufferedReader.readLines()
@@ -338,16 +335,19 @@ class DashboardFragment : Fragment() {
                     if (items != null) {
                         val selectedItem = items.find { it.id == maxIdx }
                         if (selectedItem != null) {
-                            val Id = selectedItem.id
-                            val Nama = selectedItem.nama
-                            val Penyebab = selectedItem.penyebab
-                            val Rekomendasi = selectedItem.rekomendasi
-                            itemsArray.add( Cell(Id , Nama,  Penyebab, Rekomendasi))
+                            val id = selectedItem.id
+                            val nama = selectedItem.nama
+                            val penjelasan = selectedItem.penjelasan
+                            val tanda = selectedItem.tanda
+                            val penyebab = selectedItem.penyebab
+                            val pencegahan = selectedItem.pencegahan
+                            val rekomendasi = selectedItem.rekomendasi
+                            itemsArray.add(Cell(id ,nama ,penjelasan, tanda ,penyebab ,pencegahan ,rekomendasi))
                             itemsArray.reverse()
                             adapter = JsonAdapter(itemsArray)
                             adapter.notifyDataSetChanged()
                             for (cell in itemsArray) {
-                                ArrayListHistory.add(cell) // Assuming toString() provides meaningful representation
+                                ArrayListHistory.add(cell)
                             }
                             Log.i("CEK ISI ARRAY",ArrayListHistory.toString())
                             saveArrayList(requireContext(),ArrayListHistory)
@@ -412,12 +412,6 @@ class DashboardFragment : Fragment() {
         val editor = sharedPref.edit()
         editor.putInt("TANDA MASUK", 0)
         editor.apply()
-    }
-
-    private fun deleteDetectionTemp() : Boolean{
-        val sharedPref = requireActivity().getSharedPreferences("DATA", Context.MODE_PRIVATE)
-        sharedPref.edit().clear().apply()
-        return sharedPref.getBoolean("ArrayDeteksi", false)
     }
 
     override fun onDestroyView() {

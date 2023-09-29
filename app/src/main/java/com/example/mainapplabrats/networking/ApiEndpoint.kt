@@ -18,7 +18,7 @@ object ApiEndpoint {
     // Create Retrofit
     fun getApiJson(): Retrofit{
        return Retrofit.Builder()
-            .baseUrl("https://agusfahmi.github.io/")
+            .baseUrl("https://the-lab-rats.github.io/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

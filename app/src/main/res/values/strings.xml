@@ -2,7 +2,7 @@
     <string name="app_name">O-Care</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Deteksi Penyakit</string>
-    <string name="title_operations">Cara Kerja</string>
+    <string name="title_operations">History Periksa</string>
     <string name="title_information">Informasi</string>
     <string name="take_picture">Take Picture</string>
     <string name="classified_as">Classified as:</string>
@@ -52,4 +52,45 @@
     <string name="lbl_take_camera_picture">Take a picture</string>
     <string name="lbl_choose_from_gallery">Choose from gallery</string>
     <string name="toast_image_intent_null">Image picker option is missing!</string>
+
+
+    <string name="no_tasks_image_content_description">No tasks image</string>
+    <string name="no_notes_text_placeholder">You Have No Notes Added</string>
+    <string name="no_favorite_notes_text_placeholder">You Have No Favorite Notes Added</string>
+    <string name="no_reminders_text_placeholder">You Have No Reminders Added</string>
+    <string name="category_all">All Notes</string>
+    <string name="category_favorites">Favorite Notes</string>
+    <string name="optionmenu_save">Save Note</string>
+    <string name="optionmenureminder_check">Save Reminder</string>
+    <string name="optionmenu_datepicker">Note Date</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="delete_reminder">Delete Reminder</string>
+    <string name="snackbartext_emptynote">Notes cannot be empty</string>
+    <string name="snackbartext_emptyReminder">Reminder Title cannot be empty</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="delete_note_message">Delete Note?</string>
+    <string name="delete_reminder_message">Delete Reminder?</string>
+    <string name="delete_dialog_positive_button">DELETE</string>
+    <string name="delete_dialog_negative_button">CANCEL</string>
+    <string name="permission_denied">Permission Denied</string>
+    <string name="all_reminders">All Reminders</string>
+    <string name="reminder_date_time_text">%1$s, %2$s</string>
+    <string name="reminder_repeat_text">Every %1$d %2$s(s)</string>
+
+
+    <string name="snackbar_permission_message">Permission is required to launch the camera</string>
+    <string name="snackbar_permission_action_message">OK</string>
+
+    <string name="permission_dialog_title">Permission Needed</string>
+    <string name="permission_dialog_message">Without this permission the app is unable to take picture for your note.Are you sure you want to deny this permission?</string>
+    <string name="permission_dialog_positive">I\'M SURE</string>
+    <string name="permission_dialog_negative">RE-TRY</string>
+    <string name="repeat_value_dialog_message">Set Repeat Value:</string>
+    <string name="value_dialog_positive_btn">Ok</string>
+    <string name="value_dialog_negative_btn">Cancel</string>
+
+    <string name="reminder_notification_channel_id" translatable="false">reminder_channel</string>
+    <string name="reminder_notification_channel_name" translatable="true">Reminder</string>
+    <string name="reminder_notification_channel_description">User reminder</string>
+
 </resources>

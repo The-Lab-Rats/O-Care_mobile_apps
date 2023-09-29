@@ -33,4 +33,14 @@ class JsonAdapter(private val cell: ArrayList<Cell>) :
         return 1
     }
 
+    // Metode untuk mendapatkan seluruh itemArray
+    fun getItems(): ArrayList<Cell> {
+        return cell
+    }
+
+    // Metode untuk mendapatkan objek Cell berdasarkan posisi
+    fun getCellByPosition(position: Int): Cell {
+        return cell[position]
+    }
+
 }

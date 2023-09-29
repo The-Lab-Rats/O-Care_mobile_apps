@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="status_bar_color">#5C5C5B</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -35,6 +36,15 @@
     <color name="light_grey">#ABABAB</color>
     <color name="dark_grey">#333333</color>
     <color name="dark_blue">#405467</color>
-
+    <color name="primaryColor">#42baff</color>
+    <color name="primaryLightColor">#82ecff</color>
+    <color name="primaryDarkColor">#026291</color>
+    <color name="secondaryColor">#FEFF52</color>
+    <color name="secondaryLightColor">#ffff87</color>
+    <color name="secondaryDarkColor">#c8cc0c</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#000000</color>
+    <color name="surfaceColor">#ffffff</color>
+    <color name="surfaceTextColor">#000000</color>
     </resources>
 

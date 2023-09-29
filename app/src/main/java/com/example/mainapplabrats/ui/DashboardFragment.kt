@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -31,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mainapplabrats.R.*
 import com.example.mainapplabrats.activities.ImagePickerActivity
+import com.example.mainapplabrats.adapter.HistoryAdapter
 import com.example.mainapplabrats.adapter.JsonAdapter
 import com.example.mainapplabrats.data.DataLocal
 import com.example.mainapplabrats.databinding.FragmentDashboardBinding
@@ -65,7 +67,11 @@ class DashboardFragment : Fragment() {
     private lateinit var buttonLoad: Button
     private lateinit var detailDesc : RecyclerView
     var itemsArray : ArrayList<Cell> = ArrayList()
+    private val ArrayListHistory: ArrayList<Cell> = ArrayList()
+    private val PREF_NAME = "MyPrefs"
+    private val KEY_ARRAY_LIST = "arrayListKey"
     lateinit var adapter: JsonAdapter
+    lateinit var historyAdapter: HistoryAdapter
     private lateinit var btnIndikasi: TextView
     private val binding get() = _binding!!
     var TandaMasuk : Int = 0
@@ -86,6 +92,7 @@ class DashboardFragment : Fragment() {
 //        loadProfileDefault()
         buttonLoad.setOnClickListener {
             onProfileImageClick()
+
         }
 
 
@@ -279,10 +286,20 @@ class DashboardFragment : Fragment() {
         intent.data = uri
         startActivityForResult(intent, 101)
     }
+    fun saveArrayList(context: Context, list: ArrayList<Cell>) {
+        val sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(list)
+        editor.putString(KEY_ARRAY_LIST, json)
+        editor.apply()
+    }
+
 
     companion object {
         private val TAG = DashboardFragment::class.java.simpleName
         const val REQUEST_IMAGE = 100
+
     }
     private fun outputGenerator(bitmap : Bitmap){
         //txt notepad
@@ -329,6 +346,11 @@ class DashboardFragment : Fragment() {
                             itemsArray.reverse()
                             adapter = JsonAdapter(itemsArray)
                             adapter.notifyDataSetChanged()
+                            for (cell in itemsArray) {
+                                ArrayListHistory.add(cell) // Assuming toString() provides meaningful representation
+                            }
+                            Log.i("CEK ISI ARRAY",ArrayListHistory.toString())
+                            saveArrayList(requireContext(),ArrayListHistory)
                             TandaMasuk+=1
                             val isAppInstalled = DataLocal.isAppInstalledBefore(requireActivity())
                             if(isAppInstalled){
@@ -350,6 +372,7 @@ class DashboardFragment : Fragment() {
         }
 
     }
+
     private fun saveDataDetection() {
         val gson = Gson()
         val sharedPref = requireActivity().getSharedPreferences("DATA", Context.MODE_PRIVATE)
@@ -401,4 +424,5 @@ class DashboardFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

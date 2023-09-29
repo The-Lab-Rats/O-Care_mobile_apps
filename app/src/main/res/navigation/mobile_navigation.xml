@@ -31,6 +31,18 @@
         tools:layout="@layout/fragment_about"
         app:labelVisibilityMode="unlabeled"
         />
+    <fragment
+        android:id="@+id/navigation_reminder"
+        android:name="com.example.mainapplabrats.ui.ReminderFragment"
+        tools:layout="@layout/activity_recyclerview"
+        app:labelVisibilityMode="unlabeled"
+        />
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.example.mainapplabrats.ui.HistoryCekFragment"
+        tools:layout="@layout/fragment_history"
+        app:labelVisibilityMode="unlabeled"
+        />
 
 
 </navigation>

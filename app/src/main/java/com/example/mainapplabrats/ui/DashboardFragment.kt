@@ -143,6 +143,7 @@ class DashboardFragment : Fragment() {
 
     private fun setToolbar() {
         binding.toolbar.tvToolbarTitle.text = "Deteksi Kesehatan Mulut"
+        binding.toolbar.btnBackToolbar.visibility =  View.GONE
     }
 
     private fun setupRecyclerView() {

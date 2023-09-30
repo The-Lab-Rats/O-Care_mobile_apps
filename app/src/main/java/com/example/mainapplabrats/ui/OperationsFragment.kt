@@ -30,6 +30,9 @@ class OperationsFragment : Fragment() {
     }
     private fun setToolbar() {
         binding.toolbar.tvToolbarTitle.text = "Cara Kerja"
+        binding.toolbar.btnBackToolbar.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()

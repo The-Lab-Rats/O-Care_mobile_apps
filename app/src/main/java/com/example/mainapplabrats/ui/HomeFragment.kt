@@ -12,11 +12,13 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.mainapplabrats.R
 import com.example.mainapplabrats.adapter.NewsAdapter
 import com.example.mainapplabrats.databinding.FragmentHomeBinding
 import com.example.mainapplabrats.model.ModelArticle
@@ -38,11 +40,9 @@ class HomeFragment : Fragment() {
     }
     private lateinit var imageRefresh: ImageView
     private lateinit var rvListNews: ShimmerRecyclerView
-
     private lateinit var tvTitle: TextView
-    private lateinit var tvToolbarTitle : Toolbar
+    private lateinit var iconNotification : ImageView
     private lateinit var ImageSlider : ImageSlider
-    private lateinit var btnPeriksa : Button
     private val TAG : String = "CHECK_RESPONE"
 
     var strCategory = "health"
@@ -64,7 +64,6 @@ class HomeFragment : Fragment() {
         rvListNews = binding.rvListNews
         tvTitle = binding.tvTitle
         imageRefresh = binding.imageRefresh
-
         //image slider
         val imageList =  ArrayList<SlideModel>()
         imageList.add(SlideModel("https://asset-a.grid.id/crop/0x0:0x0/x/photo/2018/04/17/3267299757.jpg", ScaleTypes.FIT))
@@ -90,6 +89,11 @@ class HomeFragment : Fragment() {
     }
     private fun setToolbar() {
         binding.toolbar.tvToolbarTitle.text = "Home"
+        binding.toolbar.notificationIcon.setOnClickListener {
+            findNavController().navigate(R.id.navigation_reminder)
+
+        }
+
     }
 
 

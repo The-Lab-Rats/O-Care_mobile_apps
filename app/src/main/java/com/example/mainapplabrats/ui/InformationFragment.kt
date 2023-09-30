@@ -47,6 +47,7 @@ class InformationFragment : Fragment() {
     }
     private fun setToolbar() {
         binding.toolbar.tvToolbarTitle.text = "Tentang Aplikasi"
+        binding.toolbar.btnBackToolbar.visibility = View.GONE
     }
     override fun onDestroyView() {
         super.onDestroyView()

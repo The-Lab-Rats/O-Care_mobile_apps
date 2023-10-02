@@ -10,7 +10,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#FF1A63C2</color>
     <color name ="orange">#FEA602</color>
-
+    <color name="green">#228B22</color>
     <color name="colorPrimary">#4682A9</color>
     <color name="colorSecondary">#749BC2</color>
     <color name="colorThird">#91C8E4</color>

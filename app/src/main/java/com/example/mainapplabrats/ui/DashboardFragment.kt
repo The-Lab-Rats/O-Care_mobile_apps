@@ -26,13 +26,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.mainapplabrats.R
 import com.example.mainapplabrats.R.*
 import com.example.mainapplabrats.activities.ImagePickerActivity
-import com.example.mainapplabrats.adapter.HistoryAdapter
 import com.example.mainapplabrats.adapter.JsonAdapter
 import com.example.mainapplabrats.data.DataLocal
 import com.example.mainapplabrats.databinding.FragmentDashboardBinding
@@ -67,7 +68,6 @@ class DashboardFragment : Fragment() {
     private lateinit var buttonLoad: Button
     private lateinit var detailDesc : RecyclerView
     var itemsArray : ArrayList<Cell> = ArrayList()
-    private val ArrayListHistory: ArrayList<Cell> = ArrayList()
     private val PREF_NAME = "MyPrefs"
     private val KEY_ARRAY_LIST = "arrayListKey"
     lateinit var adapter: JsonAdapter
@@ -124,6 +124,10 @@ class DashboardFragment : Fragment() {
                 setToolbar()
                 setupRecyclerView()
             }
+        }
+
+        binding.btnAddData.setOnClickListener {
+            findNavController().navigate(R.id.navigation_reminder)
         }
         return root
     }
@@ -278,7 +282,6 @@ class DashboardFragment : Fragment() {
         builder.show()
     }
 
-    // navigating user to app settings
     private fun openSettings() {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
         val uri = Uri.fromParts("package", activity?.packageName, null)
@@ -305,7 +308,6 @@ class DashboardFragment : Fragment() {
         val bufferedReader = BufferedReader(InputStreamReader(inputStream))
         val lines = bufferedReader.readLines()
 
-        //sesuaikan ukuran bitmap yang diminta
         val resized = Bitmap.createScaledBitmap(bitmap, 150, 150, true)
         val model = Model.newInstance(requireActivity())
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1,150, 150, 3),DataType.FLOAT32)
@@ -347,6 +349,7 @@ class DashboardFragment : Fragment() {
                             itemsArray.reverse()
                             adapter = JsonAdapter(itemsArray)
                             adapter.notifyDataSetChanged()
+                            val ArrayListHistory: ArrayList<Cell> = ArrayList()
                             for (cell in itemsArray) {
                                 ArrayListHistory.add(cell)
                             }

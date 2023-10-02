@@ -44,7 +44,6 @@ class HomeFragment : Fragment() {
     private lateinit var iconNotification : ImageView
     private lateinit var ImageSlider : ImageSlider
     private val TAG : String = "CHECK_RESPONE"
-
     var strCategory = "health"
     var strCountry: String? = null
     var modelArticle: MutableList<ModelArticle> = ArrayList()
@@ -64,10 +63,11 @@ class HomeFragment : Fragment() {
         rvListNews = binding.rvListNews
         tvTitle = binding.tvTitle
         imageRefresh = binding.imageRefresh
-        //image slider
         val imageList =  ArrayList<SlideModel>()
         imageList.add(SlideModel("https://asset-a.grid.id/crop/0x0:0x0/x/photo/2018/04/17/3267299757.jpg", ScaleTypes.FIT))
         imageList.add(SlideModel("https://d1bpj0tv6vfxyp.cloudfront.net/x-kebiasaan-ini-bisa-bantu-menjaga-kesehatan-mulut-dan-gigi.jpg", ScaleTypes.FIT))
+        imageList.add(SlideModel("https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2021/06/15061933/Kenali-Arti-Warna-Lidah-yang-Perlu-Diperhatikan-1.jpg", ScaleTypes.FIT))
+        imageList.add(SlideModel("https://akcdn.detik.net.id/visual/2020/02/12/70b6ddb4-4d04-4de6-93a9-d7f413801c6c_169.jpeg?w=650", ScaleTypes.FIT))
 
         ImageSlider.setImageList(imageList, ScaleTypes.FIT)
 
@@ -88,12 +88,10 @@ class HomeFragment : Fragment() {
         return root
     }
     private fun setToolbar() {
-        binding.toolbar.tvToolbarTitle.text = "Home"
         binding.toolbar.notificationIcon.setOnClickListener {
             findNavController().navigate(R.id.navigation_reminder)
 
         }
-
     }
 
 

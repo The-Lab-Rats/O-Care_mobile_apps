@@ -76,7 +76,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mari jaga kesehatan mulut"
+                        android:text="Mari Jaga Kesehatan Mulut Anda! "
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
+                android:id="@+id/cardView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="12dp"
@@ -108,7 +108,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                            android:text="LAB RATS TEAM - AIC COMPETITION 15"
+                        android:text="LAB RATS TEAM - AIC COMPETITION 15"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="10dp"/>
@@ -162,6 +162,7 @@
                         android:textSize="14sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
     </RelativeLayout>

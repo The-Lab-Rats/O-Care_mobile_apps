@@ -53,19 +53,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_load_image"
-                    android:text="@string/load_image"
-                    app:layout_constraintEnd_toStartOf="@id/guideline2"
+                    android:text="BUKA KAMERA/GALERI"
+                    android:layout_marginStart="100dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView"
-                    android:layout_marginTop="25dp"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/take_image"
-                    android:id="@+id/btn_take_image"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/guideline2"
                     app:layout_constraintTop_toBottomOf="@id/imageView"
                     android:layout_marginTop="25dp"
                     />
@@ -75,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/title_diagnosa"
                     android:text="Data diagnosa akan muncul dibawah"
-                    app:layout_constraintTop_toBottomOf="@id/btn_take_image"
+                    app:layout_constraintTop_toBottomOf="@id/btn_load_image"
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="35dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -95,31 +85,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/title_diagnosa" />
 
-                <LinearLayout
-                    app:layout_constraintTop_toBottomOf="@id/detailDesc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/btn_more_info"
-                        android:layout_marginStart="35dp"
-                        android:textSize="10dp"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:text="Info Lanjutan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/guideline2"
                         app:layout_constraintTop_toBottomOf="@id/detailDesc"
                         android:layout_marginTop="10dp"
-                        />
-                    <TextView
-                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                    />
+                    <Button
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:textSize="10dp"
-                        android:layout_marginStart="35dp"
-                        android:id="@+id/btn_indikasi"/>
-                </LinearLayout>
-
+                        android:layout_height="wrap_content"
+                        android:text="Konsultasi"
+                        android:id="@+id/btn_konsultasi"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/guideline2"
+                        app:layout_constraintTop_toBottomOf="@id/detailDesc"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="50dp"
+                        />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline2"

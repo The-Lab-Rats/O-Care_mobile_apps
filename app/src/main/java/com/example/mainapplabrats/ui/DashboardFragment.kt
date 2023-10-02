@@ -22,7 +22,6 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -63,7 +62,6 @@ class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     private lateinit var imageView: ImageView
-    private lateinit var button: Button
     private lateinit var btn_more_info: Button
     private lateinit var buttonLoad: Button
     private lateinit var detailDesc : RecyclerView
@@ -71,7 +69,7 @@ class DashboardFragment : Fragment() {
     private val PREF_NAME = "MyPrefs"
     private val KEY_ARRAY_LIST = "arrayListKey"
     lateinit var adapter: JsonAdapter
-    private lateinit var btnIndikasi: TextView
+    var btnIndikasi : String = ""
     private val binding get() = _binding!!
     var TandaMasuk : Int = 0
 
@@ -83,21 +81,23 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
         imageView = binding.imageView
-        button = binding.btnTakeImage
         detailDesc = binding.detailDesc
         buttonLoad = binding.btnLoadImage
         btn_more_info = binding.btnMoreInfo
-        btnIndikasi = binding.btnIndikasi
 
 
         buttonLoad.setOnClickListener {
             onProfileImageClick()
 
         }
-        btnIndikasi.visibility = View.GONE
-        btn_more_info.text = "Klik Untuk Informasi Lebih Lanjut "
         btn_more_info.setOnClickListener {
-            val searchUrl = "https://www.google.com/search?q=cara+mengatasi+${btnIndikasi.text}"
+            val searchUrl = "https://www.google.com/search?q=cara+mengatasi+${btnIndikasi}"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(searchUrl))
+            startActivity(intent)
+        }
+
+        binding.btnKonsultasi.setOnClickListener {
+            val searchUrl = "https://www.halodoc.com/tanya-dokter"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(searchUrl))
             startActivity(intent)
         }
@@ -326,7 +326,7 @@ class DashboardFragment : Fragment() {
                 maxIdx =  index
             }
         }
-        btnIndikasi.text = lines[maxIdx]
+        btnIndikasi = lines[maxIdx]
 
         model.close()
         val service = getApiJson().create(ApiInterface::class.java)
@@ -383,7 +383,7 @@ class DashboardFragment : Fragment() {
         val editor = sharedPref.edit()
         val json = gson.toJson(itemsArray)
         editor.putString("ArrayDeteksi", json)
-        editor.putString("hasilDeteksi", btnIndikasi.text.toString())
+        editor.putString("hasilDeteksi", btnIndikasi)
         editor.putString("TandaMasuk", TandaMasuk.toString())
         editor.apply()
     }
@@ -397,9 +397,8 @@ class DashboardFragment : Fragment() {
         adapter = JsonAdapter(itemsArray)
         adapter.notifyDataSetChanged()
         binding.detailDesc.adapter = adapter
-         val hasilD = sharedPref.getString("hasilDeteksi",null)
-         binding.btnIndikasi.text = hasilD
-
+        val hasilD = sharedPref.getString("hasilDeteksi",null)
+        btnIndikasi = hasilD.toString()
     }
    fun saveLocalInstalled(DataVar : Int){
         val sharedPref = requireActivity().getSharedPreferences("DATA", Context.MODE_PRIVATE)

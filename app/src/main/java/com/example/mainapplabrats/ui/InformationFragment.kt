@@ -43,6 +43,9 @@ class InformationFragment : Fragment() {
         btnRemind.setOnClickListener {
             findNavController().navigate(R.id.navigation_reminder)
         }
+        binding.buttonDisclaimer.setOnClickListener {
+            findNavController().navigate(R.id.navigation_disclaimer)
+        }
         return root
     }
     private fun setToolbar() {

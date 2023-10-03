@@ -49,6 +49,11 @@
         tools:layout="@layout/fragment_information"
         app:labelVisibilityMode="unlabeled"
         />
-
+    <fragment
+        android:id="@+id/navigation_disclaimer"
+        android:name="com.example.mainapplabrats.ui.DisclaimerFragment"
+        tools:layout="@layout/fragment_disclaimer"
+        app:labelVisibilityMode="unlabeled"
+        />
 
 </navigation>

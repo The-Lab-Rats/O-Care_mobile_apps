@@ -37,6 +37,7 @@ import com.example.mainapplabrats.adapter.JsonAdapter
 import com.example.mainapplabrats.data.DataLocal
 import com.example.mainapplabrats.databinding.FragmentDashboardBinding
 import com.example.mainapplabrats.ml.Model
+import com.example.mainapplabrats.ml.ModelNew
 import com.example.mainapplabrats.model.Cell
 import com.example.mainapplabrats.networking.ApiEndpoint.getApiJson
 import com.example.mainapplabrats.networking.ApiInterface
@@ -252,13 +253,11 @@ class DashboardFragment : Fragment() {
             if (resultCode == Activity.RESULT_OK) {
                 val uri = data!!.getParcelableExtra<Uri>("path")
                 try {
-                    // You can update this bitmap to your server
                      val bitmap = MediaStore.Images.Media.getBitmap(activity?.contentResolver, uri)
                     outputGenerator(bitmap)
                     openCustomDialog()
                     DataLocal.bitmapToBase64(bitmap)
                     DataLocal.saveImageToSharedPreferences(bitmap,requireActivity())
-                    // loading profile image from local cache
                     loadProfile(uri!!.toString())
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -309,7 +308,7 @@ class DashboardFragment : Fragment() {
         val lines = bufferedReader.readLines()
 
         val resized = Bitmap.createScaledBitmap(bitmap, 150, 150, true)
-        val model = Model.newInstance(requireActivity())
+        val model = ModelNew.newInstance(requireActivity())
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1,150, 150, 3),DataType.FLOAT32)
 
         val tensorImage = TensorImage(DataType.FLOAT32)
@@ -345,7 +344,7 @@ class DashboardFragment : Fragment() {
                             val penyebab = selectedItem.penyebab
                             val pencegahan = selectedItem.pencegahan
                             val rekomendasi = selectedItem.rekomendasi
-                            itemsArray.add(Cell(id ,nama ,penjelasan, tanda ,penyebab ,pencegahan ,rekomendasi))
+                            itemsArray.add(Cell(id ,nama , penjelasan, tanda ,penyebab ,pencegahan ,rekomendasi))
                             itemsArray.reverse()
                             adapter = JsonAdapter(itemsArray)
                             adapter.notifyDataSetChanged()
@@ -365,7 +364,6 @@ class DashboardFragment : Fragment() {
                         }
                     }
                     Handler(Looper.getMainLooper()).postDelayed({
-                        // Kode Anda di sini
                         binding.detailDesc.adapter = adapter
                     }, 3000)
 

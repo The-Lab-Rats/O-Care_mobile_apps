@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="16dp"
-            android:text="@string/diagnosa"
+            android:text="@string/prediksi"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

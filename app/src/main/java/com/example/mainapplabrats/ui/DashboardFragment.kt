@@ -36,7 +36,6 @@ import com.example.mainapplabrats.activities.ImagePickerActivity
 import com.example.mainapplabrats.adapter.JsonAdapter
 import com.example.mainapplabrats.data.DataLocal
 import com.example.mainapplabrats.databinding.FragmentDashboardBinding
-import com.example.mainapplabrats.ml.Model
 import com.example.mainapplabrats.ml.ModelNew
 import com.example.mainapplabrats.model.Cell
 import com.example.mainapplabrats.networking.ApiEndpoint.getApiJson

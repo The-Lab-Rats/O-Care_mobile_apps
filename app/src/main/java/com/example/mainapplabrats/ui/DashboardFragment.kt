@@ -36,7 +36,7 @@ import com.example.mainapplabrats.activities.ImagePickerActivity
 import com.example.mainapplabrats.adapter.JsonAdapter
 import com.example.mainapplabrats.data.DataLocal
 import com.example.mainapplabrats.databinding.FragmentDashboardBinding
-import com.example.mainapplabrats.ml.ModelNew
+import com.example.mainapplabrats.ml.ModelOral
 import com.example.mainapplabrats.model.Cell
 import com.example.mainapplabrats.networking.ApiEndpoint.getApiJson
 import com.example.mainapplabrats.networking.ApiInterface
@@ -306,9 +306,9 @@ class DashboardFragment : Fragment() {
         val bufferedReader = BufferedReader(InputStreamReader(inputStream))
         val lines = bufferedReader.readLines()
 
-        val resized = Bitmap.createScaledBitmap(bitmap, 150, 150, true)
-        val model = ModelNew.newInstance(requireActivity())
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1,150, 150, 3),DataType.FLOAT32)
+        val resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
+        val model = ModelOral.newInstance(requireActivity())
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1,224, 224, 3),DataType.FLOAT32)
 
         val tensorImage = TensorImage(DataType.FLOAT32)
         tensorImage.load(resized)
